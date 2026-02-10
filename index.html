@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Online Calculator</title>
+    <meta name="description" content="Simple online calculator for addition, subtraction, multiplication, and division.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calc {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calc">
+    <h1>Calculator</h1>
+
+    <input type="number" id="num1" placeholder="First number">
+    
+    <select id="op">
+        <option value="+">+</option>
+        <option value="-">−</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+    </select>
+
+    <input type="number" id="num2" placeholder="Second number">
+    
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculate() {
+    let num1 = parseFloat(document.getElementById("num1").value);
+    let num2 = parseFloat(document.getElementById("num2").value);
+    let op = document.getElementById("op").value;
+    let result;
+
+    if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById("result").innerText = "Please enter valid numbers";
+        return;
+    }
+
+    if (op === "+") {
+        result = num1 + num2;
+    } else if (op === "-") {
+        result = num1 - num2;
+    } else if (op === "*") {
+        result = num1 * num2;
+    } else if (op === "/") {
+        if (num2 === 0) {
+            result = "Cannot divide by zero";
+        } else {
+            result = num1 / num2;
+        }
+    } else {
+        result = "Invalid operator";
+    }
+
+    document.getElementById("result").innerText = "Result: " + result;
+}
+</script>
+
+</body>
+</html>
